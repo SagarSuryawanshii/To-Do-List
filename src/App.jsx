@@ -3,6 +3,7 @@ import AddToDo from "./Components/AddToDo";
 import ToDoItems from "./Components/ToDoItems";
 import "./App.css";
 import { useState } from "react";
+import WelcomeMessage from "./Components/WelcomeMessage";
 
 function App() {
   const initialTodoItems = [
@@ -38,11 +39,23 @@ function App() {
     setTodoListItems(newTodoItems);
   };
 
+  const handleDeletedItem = (todoItemName) => {
+    const newToDoItems = todoListItems.filter(item => item.itemName != todoItemName);
+
+    setTodoListItems(newToDoItems);
+    // console.log(`Item Deleted: ${todoItemName}`);
+  };
+
   return (
     <center className="todo-container">
       <AppName />
       <AddToDo onNewItem={handleNewItem} />
-      <ToDoItems toDoListItems={todoListItems}></ToDoItems>
+
+      {todoListItems.length == 0 && <WelcomeMessage></WelcomeMessage>}
+      <ToDoItems
+        toDoListItems={todoListItems}
+        onDeleteItem={handleDeletedItem}
+      ></ToDoItems>
     </center>
   );
 }
