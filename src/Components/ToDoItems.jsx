@@ -1,7 +1,7 @@
 import ToDoItem from "./ToDoItem";
 import styles from "./ToDoItems.module.css";
 
-function ToDoItems({ toDoListItems }) {
+function ToDoItems({ toDoListItems, onDeleteItem }) {
   return (
     <div className={styles.itemsContainer}>
       {toDoListItems.map((item) => (
@@ -9,6 +9,7 @@ function ToDoItems({ toDoListItems }) {
           key={item.itemName}
           toDoDate={item.dueDate}
           toDoName={item.itemName}
+          onDeleteButtonClick={onDeleteItem}
         >
           {" "}
         </ToDoItem>
